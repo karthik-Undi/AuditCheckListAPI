@@ -20,7 +20,7 @@ namespace AuditCheckListAPI.Controllers
         {
             _context = context;
         } 
-        [HttpGet]
+        [HttpGet("{auditType}")]
         public IActionResult AuditChecklistQuestions(string auditType)
         {
             _log4net.Info("Get Questions By AuditType Was Called !!");
