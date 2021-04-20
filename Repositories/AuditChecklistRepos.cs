@@ -19,7 +19,7 @@ namespace AuditCheckListAPI.Repositories
             new QuestionsAndType() { Questions = "2. Have all Change requests been approved by the application owner?", AuditType = "SOX" },
             new QuestionsAndType() { Questions = "3. For a major change, was there a database backup taken before and after PROD move?", AuditType = "SOX" },
             new QuestionsAndType() { Questions = "4. Has the application owner approval obtained while adding a user to the system?", AuditType = "SOX" },
-            new QuestionsAndType() { Questions = "5. Is data deletion from the system done with application owner approval?8", AuditType = "SOX" }
+            new QuestionsAndType() { Questions = "5. Is data deletion from the system done with application owner approval?", AuditType = "SOX" }
         };
         public List<QuestionsAndType> AuditChecklistQuestions(string auditType)
         {
