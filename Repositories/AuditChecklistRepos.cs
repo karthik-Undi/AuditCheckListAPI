@@ -8,31 +8,22 @@ namespace AuditCheckListAPI.Repositories
 {
     public class AuditChecklistRepos : IAuditChecklistRepos
     {
-        static InternalQuestions internalQuestions = new InternalQuestions()
+        static List<QuestionsAndType> questionsAndTypes = new List<QuestionsAndType>()
         {
-            QuestionOne = "Have all Change requests followed SDLC before PROD move?",
-            QuestionTwo = "Have all Change requests been approved by the application owner?",
-            QuestionThree = "Are all artifacts like CR document, Unit test cases available?",
-            QuestionFour = "Is the SIT and UAT sign-off available?",
-            QuestionFive = "Is data deletion from the system done with application owner approval?"
+            new QuestionsAndType(){ Questions = "1. Have all Change requests followed SDLC before PROD move?" , AuditType = "Internal"},
+            new QuestionsAndType() { Questions = "2. Have all Change requests been approved by the application owner?", AuditType = "Internal" },
+            new QuestionsAndType() { Questions = "3. Are all artifacts like CR document, Unit test cases available?", AuditType = "Internal" },
+            new QuestionsAndType() { Questions = "4. Is the SIT and UAT sign-off available?", AuditType = "Internal" },
+            new QuestionsAndType() { Questions = "5. Is data deletion from the system done with application owner approval?", AuditType = "Internal" },
+            new QuestionsAndType() { Questions = "1. Have all Change requests followed SDLC before PROD move?", AuditType = "SOX" },
+            new QuestionsAndType() { Questions = "2. Have all Change requests been approved by the application owner?", AuditType = "SOX" },
+            new QuestionsAndType() { Questions = "3. For a major change, was there a database backup taken before and after PROD move?", AuditType = "SOX" },
+            new QuestionsAndType() { Questions = "4. Has the application owner approval obtained while adding a user to the system?", AuditType = "SOX" },
+            new QuestionsAndType() { Questions = "5. Is data deletion from the system done with application owner approval?8", AuditType = "SOX" }
         };
-        static SoxQuestions soxQuestions = new SoxQuestions()
+        public List<QuestionsAndType> AuditChecklistQuestions(string auditType)
         {
-            QuestionOne = "Have all Change requests followed SDLC before PROD move?",
-            QuestionTwo = "Have all Change requests been approved by the application owner?",
-            QuestionThree = "For a major change, was there a database backup taken before and after PROD move?",
-            QuestionFour = "Has the application owner approval obtained while adding a user to the system?",
-            QuestionFive = "Is data deletion from the system done with application owner approval?"
-        };
-
-        public InternalQuestions GetInternalQuestions()
-        {
-            return internalQuestions;
-        }
-
-        public SoxQuestions GetSoxQuestions()
-        {
-            return soxQuestions;
+            return questionsAndTypes.Where(questions => questions.AuditType == auditType).ToList();
         }
 
     }

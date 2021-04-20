@@ -20,19 +20,28 @@ namespace AuditCheckListAPI.Controllers
         {
             _context = context;
         } 
-        [HttpGet("GetInternalQuestions")]
-        public InternalQuestions GetInternalQuestions()
+        [HttpGet]
+        public IActionResult AuditChecklistQuestions(string auditType)
         {
-            _log4net.Info("Get Internal Questions Was Called !!");
-            return _context.GetInternalQuestions();
+            _log4net.Info("Get Questions By AuditType Was Called !!");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var questions = _context.AuditChecklistQuestions(auditType);
+                _log4net.Info("Questions for Audit Type " + auditType + " Was Called");
+                if (questions == null)
+                {
+                    return NotFound();
+                }
+                return Ok(questions);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
-
-        [HttpGet("GetSoxQuestions")]
-        public SoxQuestions GetSoxQuestions()
-        {
-            _log4net.Info("Get Sox Questions Was Called !!");
-            return _context.GetSoxQuestions();
-        }
-
     }
 }

@@ -8,7 +8,6 @@ namespace AuditCheckListAPI.Repositories
 {
     public interface IAuditChecklistRepos
     {
-        InternalQuestions GetInternalQuestions();
-        SoxQuestions GetSoxQuestions();
+        List<QuestionsAndType> AuditChecklistQuestions(string auditType);
     }
 }
