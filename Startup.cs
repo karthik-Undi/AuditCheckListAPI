@@ -48,7 +48,7 @@ namespace AuditCheckListAPI
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Resident API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Audit Checklist API V1");
             });
             loggerFactory.AddLog4Net();
 
