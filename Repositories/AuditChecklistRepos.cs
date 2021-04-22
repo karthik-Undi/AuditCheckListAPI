@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace AuditCheckListAPI.Repositories
 {
+
     public class AuditChecklistRepos : IAuditChecklistRepos
     {
+
+
         static List<QuestionsAndType> questionsAndTypes = new List<QuestionsAndType>()
         {
             new QuestionsAndType(){ Questions = "1. Have all Change requests followed SDLC before PROD move?" , AuditType = "Internal"},
@@ -21,10 +24,25 @@ namespace AuditCheckListAPI.Repositories
             new QuestionsAndType() { Questions = "4. Has the application owner approval obtained while adding a user to the system?", AuditType = "SOX" },
             new QuestionsAndType() { Questions = "5. Is data deletion from the system done with application owner approval?", AuditType = "SOX" }
         };
+
+
+        public AuditChecklistRepos(List<QuestionsAndType> questionsAndTypeslist)
+        {
+            questionsAndTypes = questionsAndTypeslist;
+        }
+
+        public AuditChecklistRepos()
+        {
+
+        }
         public List<QuestionsAndType> AuditChecklistQuestions(string auditType)
         {
             return questionsAndTypes.Where(questions => questions.AuditType == auditType).ToList();
         }
 
+        
+
     }
+
+
 }
